@@ -9,7 +9,7 @@ const getBooks = (req: Request, res: Response) => {
       res.status(200).json(library[reqBookIndex]);
       return;
     }
-    res.status(404).json("404 | книга не найдена");
+    res.status(404).json({ errcode: 404, errmsg: "not found" });
     return;
   }
   res.status(200).json(library);

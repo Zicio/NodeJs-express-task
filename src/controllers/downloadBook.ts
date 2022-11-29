@@ -7,11 +7,11 @@ const downloadeBook = async (req: Request, res: Response) => {
   if (reqBookIndex !== -1) {
     res.download(
       library[reqBookIndex].fileBook!,
-      library[reqBookIndex].fileName
+      library[reqBookIndex].fileName!
     );
     return;
   }
-  res.status(404).json("404 | книга не найдена");
+  res.status(404).json({ errcode: 404, errmsg: "not found" });
 };
 
 export default downloadeBook;

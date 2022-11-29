@@ -5,10 +5,10 @@ import library from "../data/library";
 
 const createBook = async (req: Request, res: Response) => {
   const newBook: IBook = await req.body;
-  newBook["id"] = uuidv4();
+  newBook.id = uuidv4();
   if (req.file) {
     const { path } = req.file;
-    newBook["fileBook"] = path;
+    newBook.fileBook = path;
   }
   library.push(newBook);
   res.status(201).json(newBook);

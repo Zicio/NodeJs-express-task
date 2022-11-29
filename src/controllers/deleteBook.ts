@@ -9,7 +9,7 @@ const deleteBook = async (req: Request, res: Response) => {
     res.status(200).json("ok");
     return;
   }
-  res.status(404).json("404 | книга не найдена");
+  res.status(404).json({ errcode: 404, errmsg: "not found" });
 };
 
 export default deleteBook;

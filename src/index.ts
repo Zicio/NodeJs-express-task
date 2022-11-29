@@ -1,6 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import router from "./src/routers/router";
+import router from "./routers/router";
 
 dotenv.config({ path: __dirname + "/.env" });
 

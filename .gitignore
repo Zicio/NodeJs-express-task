@@ -1,5 +1,6 @@
 dist
 doc
+src/data/books/
 
 # Logs
 logs
