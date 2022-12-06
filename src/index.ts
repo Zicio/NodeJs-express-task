@@ -1,14 +1,17 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import bookRouter from "./routers/bookRouter";
+import bookRouter from "./routes/book";
+import indexRouter from "./routes/index";
 
 dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 
+app.set('views', __dirname);
 app.set("view engine", "ejs");
 app.use(express.json());
-app.use(bookRouter);
+app.use('/', indexRouter);
+app.use('/book', bookRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

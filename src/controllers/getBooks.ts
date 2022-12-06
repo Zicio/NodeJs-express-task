@@ -1,18 +1,17 @@
 import { Request, Response } from "express";
 import library from "../data/library";
 
-const getBooks = (req: Request, res: Response) => {
+const getBooks = async (req: Request, res: Response) => {
   const { id } = req.params;
-  if (id) {
-    const reqBookIndex = library.findIndex((el) => el.id === id);
-    if (reqBookIndex !== -1) {
-      res.status(200).json(library[reqBookIndex]);
-      return;
-    }
-    res.status(404).json({ errcode: 404, errmsg: "not found" });
+  const reqBookIndex = library.findIndex((el) => el.id === id);
+  if (reqBookIndex !== -1) {
+    res.download(
+      library[reqBookIndex].fileBook!,
+      library[reqBookIndex].fileName!
+    );
     return;
   }
-  res.status(200).json(library);
+  res.status(404).json({ errcode: 404, errmsg: "not found" });
 };
 
 export default getBooks;
