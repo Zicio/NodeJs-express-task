@@ -7,6 +7,7 @@ const deleteBook = async (req: Request, res: Response) => {
 
   if (idx === -1) {
     res.redirect("/404");
+    return;
   }
 
   library.splice(idx, 1);
