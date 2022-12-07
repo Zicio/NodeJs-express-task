@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import library from "../data/library";
 
-const deleteBook = async (req: Request, res: Response) => {
+const editBookRender = async (req: Request, res: Response) => {
   const { id } = req.params;
   const idx = library.findIndex((el) => el.id === id);
 
@@ -9,8 +9,10 @@ const deleteBook = async (req: Request, res: Response) => {
     res.redirect("/404");
   }
 
-  library.splice(idx, 1);
-  res.redirect(`/book`);
+  res.render("views/book/edit", {
+    title: "Book | view",
+    book: library[idx],
+  });
 };
 
-export default deleteBook;
+export default editBookRender;

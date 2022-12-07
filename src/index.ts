@@ -7,11 +7,12 @@ dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 
-app.set('views', __dirname);
+app.use(express.urlencoded());
+app.set("views", __dirname);
 app.set("view engine", "ejs");
 app.use(express.json());
-app.use('/', indexRouter);
-app.use('/book', bookRouter);
+app.use("/", indexRouter);
+app.use("/book", bookRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
