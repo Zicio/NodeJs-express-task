@@ -1,4 +1,4 @@
-import { IUser } from "./../models/models";
+import { IUser } from "../models/models";
 import { Request, Response } from "express";
 
 const login = async (req: Request, res: Response) => {

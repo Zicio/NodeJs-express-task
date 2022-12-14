@@ -1,4 +1,4 @@
-import { IBook } from "./../models/models";
+import { IBook } from "../models/models";
 import { Request, Response } from "express";
 import library from "../data/library";
 

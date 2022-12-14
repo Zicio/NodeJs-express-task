@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import library from "../data/library";
 
-const downloadeBook = async (req: Request, res: Response) => {
+const downloadBook = async (req: Request, res: Response) => {
   const { id } = req.params;
   const reqBookIndex = library.findIndex((el) => el.id === id);
   if (reqBookIndex !== -1) {
@@ -14,4 +14,4 @@ const downloadeBook = async (req: Request, res: Response) => {
   res.status(404).json({ errcode: 404, errmsg: "not found" });
 };
 
-export default downloadeBook;
+export default downloadBook;

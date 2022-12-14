@@ -1,13 +1,13 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import router from "./routers/router";
+import route from "./routes/route";
 
 dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 
 app.use(express.json());
-app.use(router);
+app.use(route);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
