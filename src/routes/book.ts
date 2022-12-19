@@ -23,14 +23,4 @@ bookRouter.get("/update/:id", editBookRender);
 
 bookRouter.post("/update/:id", editBookRequest);
 
-// bookRouter.post("/api/user/login", login);
-
-// bookRouter.get("/api/books/:id/download", downloadBook);
-
-// bookRouter.get("/api/books/:id", getBooks);
-
-// bookRouter.put("/api/books/:id", editBookRender);
-
-// bookRouter.delete("/api/books/:id", deleteBook);
-
 export default bookRouter;

@@ -1,0 +1,19 @@
+services:
+  storage:
+    image: redis
+    volume:
+      - ./src/redisData:/redisData
+  counter:
+    image: zicio/bookscounter
+    environment:
+      - PORT=3100
+      - REDIS_URL=redis://storage
+    ports: 80:3100
+  app:
+    image: zicio/booksapp:compose
+    environment:
+      - PORT=4200
+    ports: 90:4200
+    depends_on:
+      -storage
+      -counter

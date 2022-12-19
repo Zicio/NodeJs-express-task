@@ -3,8 +3,9 @@ import * as dotenv from "dotenv";
 import bookRouter from "./routes/book";
 import indexRouter from "./routes/index";
 import error from "./middleware/error";
+import path from "path";
 
-dotenv.config({ path: __dirname + "/.env" });
+dotenv.config({ path: path.join(__dirname, "../config/.env") });
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.use("/", indexRouter);
 app.use("/book", bookRouter);
 app.use(error);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}...`);
 });
