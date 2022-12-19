@@ -14,10 +14,13 @@ const viewBook = async (req: Request, res: Response) => {
     return;
   }
 
-  // const incrCounter = await fetch(process.env.COUNTER_URL + `${id}/incr`);
-  // const counter = await fetch(process.env.COUNTER_URL + `${id}`);
-  // console.log(incrCounter.json());
-  // console.log(counter.json());
+  const incrCounter = await fetch(process.env.COUNTER_URL + `${id}/incr`, {
+    method: "POST",
+    body: JSON.stringify("Увеличить"),
+  });
+  const counter = await fetch(process.env.COUNTER_URL + `${id}`);
+  console.log(incrCounter.json());
+  console.log(counter.json());
 
   res.render("views/book/view", {
     title: "Book | view",
