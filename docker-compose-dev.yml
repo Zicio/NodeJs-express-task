@@ -3,6 +3,21 @@ services:
     image: redis
     volumes:
       - ./src/data:/data
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
   counter:
     image: zicio/bookscounter
     environment:
@@ -15,8 +30,11 @@ services:
     environment:
       - PORT=4200
       - COUNTER_URL=http://counter:3100/counter
+      - URLDB=mongodb://root:example@mongo:27017/
     ports:
       - 4200:4200
     depends_on:
       - storage
+      - mongo
+      - mongo-express
       - counter

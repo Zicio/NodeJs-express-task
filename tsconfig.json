@@ -8,8 +8,12 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node"
+    ]
   },
-
-  "include": ["index.ts"]
+  "include": [
+    "index.ts"
+  ]
 }

@@ -1,17 +1,14 @@
 import { Request, Response } from "express";
-import library from "../data/library";
+import Book from "../models/book";
 
 const deleteBook = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const idx = library.findIndex((el) => el.id === id);
-
-  if (idx === -1) {
-    res.redirect("/404");
-    return;
+  try {
+    await Book.deleteOne({ _id: id });
+    res.redirect(`/book`);
+  } catch (e) {
+    res.status(500).json({ errcode: 500, errmsg: (e as Error).message });
   }
-
-  library.splice(idx, 1);
-  res.redirect(`/book`);
 };
 
 export default deleteBook;

@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-import library from "../data/library";
+import Book from "../models/book";
 
 const editBookRender = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const idx = library.findIndex((el) => el.id === id);
-
-  if (idx === -1) {
-    res.redirect("/404");
-    return;
+  try {
+    const book = await Book.findById(id).select("-__v");
+    res.render("views/book/edit", {
+      title: "Book | view",
+      book: book,
+    });
+  } catch (e) {
+    res.status(500).json({ errcode: 500, errmsg: (e as Error).message });
   }
-
-  res.render("views/book/edit", {
-    title: "Book | view",
-    book: library[idx],
-  });
 };
 
 export default editBookRender;

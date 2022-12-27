@@ -1,5 +1,5 @@
 import { Router } from "express";
-import renderBooks from "../controllers/books";
+import renderBooks from "../controllers/renderBooks";
 import createBookRender from "../controllers/createBookRender";
 import createBookRequest from "../controllers/createBookRequest";
 import viewBook from "../controllers/viewBook";

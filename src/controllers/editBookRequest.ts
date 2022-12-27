@@ -1,24 +1,17 @@
 import { Request, Response } from "express";
-import library from "../data/library";
 import { IBook } from "../models/models";
+import Book from "../models/book";
 
 const editBookRequest = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { title, description, authors }: IBook = req.body;
-  const idx = library.findIndex((el) => el.id === id);
 
-  if (idx === -1) {
-    res.redirect("/404");
-    return;
+  try {
+    await Book.findByIdAndUpdate(id, { title, description, authors });
+    res.redirect(`/book/${id}`);
+  } catch (e) {
+    res.status(500).json({ errcode: 500, errmsg: (e as Error).message });
   }
-
-  library[idx] = {
-    ...library[idx],
-    title,
-    description,
-    authors,
-  };
-  res.redirect(`/book/${id}`);
 };
 
 export default editBookRequest;
