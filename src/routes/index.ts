@@ -1,8 +1,10 @@
 import { Router } from "express";
-import mainPage from "../controllers/mainPage";
+import bookRouter from "./book";
+import mainRouter from "./main";
 
-const indexRouter = Router();
+const router = Router();
 
-indexRouter.get("/", mainPage);
+router.use("/book", bookRouter);
+router.use(mainRouter);
 
-export default indexRouter;
+export default router;

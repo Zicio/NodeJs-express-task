@@ -30,6 +30,7 @@ services:
     environment:
       - PORT=4200
       - COUNTER_URL=http://counter:3100/counter
+      - URLDB=mongodb://root:example@mongo:27017/
     ports:
       - 4200:4200
     depends_on:

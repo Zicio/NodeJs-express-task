@@ -12,7 +12,7 @@ const createBookRequest = async (req: Request, res: Response) => {
 
   try {
     await newBook.save();
-    res.json(newBook);
+    // res.json(newBook);
     res.redirect("/book");
   } catch (e) {
     res.status(500).json({ errcode: 500, errmsg: (e as Error).message });
