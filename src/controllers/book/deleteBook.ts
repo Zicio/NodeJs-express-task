@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Book from "../models/book";
+import Book from "../../models/book";
 
 const deleteBook = async (req: Request, res: Response) => {
   const { id } = req.params;

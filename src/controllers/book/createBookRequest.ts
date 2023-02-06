@@ -1,6 +1,6 @@
-import { IBook } from "../models/models";
+import { IBook } from "../../models/models";
 import { Request, Response } from "express";
-import Book from "../models/book";
+import Book from "../../models/book";
 
 const createBookRequest = async (req: Request, res: Response) => {
   const { title, description, authors }: IBook = req.body;

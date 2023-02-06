@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { IBook } from "../models/models";
-import Book from "../models/book";
+import { IBook } from "../../models/models";
+import Book from "../../models/book";
 
 const editBookRequest = async (req: Request, res: Response) => {
   const { id } = req.params;

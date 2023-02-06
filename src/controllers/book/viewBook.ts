@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as dotenv from "dotenv";
 import path from "path";
-import Book from "../models/book";
+import Book from "../../models/book";
 
 dotenv.config({ path: path.join(__dirname, "../../config/.env") });
 

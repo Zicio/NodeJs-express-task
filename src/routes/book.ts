@@ -1,11 +1,11 @@
 import { Router } from "express";
-import renderBooks from "../controllers/renderBooks";
-import createBookRender from "../controllers/createBookRender";
-import createBookRequest from "../controllers/createBookRequest";
-import viewBook from "../controllers/viewBook";
-import deleteBook from "../controllers/deleteBook";
-import editBookRender from "../controllers/editBookRender";
-import editBookRequest from "../controllers/editBookRequest";
+import renderBooks from "../controllers/book/renderBooks";
+import createBookRender from "../controllers/book/createBookRender";
+import createBookRequest from "../controllers/book/createBookRequest";
+import viewBook from "../controllers/book/viewBook";
+import deleteBook from "../controllers/book/deleteBook";
+import editBookRender from "../controllers/book/editBookRender";
+import editBookRequest from "../controllers/book/editBookRequest";
 
 const bookRouter = Router();
 
