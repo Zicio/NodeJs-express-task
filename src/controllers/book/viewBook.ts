@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import * as dotenv from "dotenv";
 import path from "path";
 import Book from "../../models/book";
+import {BooksRepository} from "../../models/models";
+import container from "../../container";
 
 dotenv.config({ path: path.join(__dirname, "../../config/.env") });
 
@@ -25,6 +27,9 @@ const viewBook = async (req: Request, res: Response) => {
     view = +(valueOfCounter.counter as string);
 
     //Mongo
+    // <<<  IoC homework >>>
+    // const repo = container.get(BooksRepository);
+    // const book = await repo.getBook(id);
     const book = await Book.findById(id).select("-__v");
     res.render("views/book/view", {
       title: "Book | view",

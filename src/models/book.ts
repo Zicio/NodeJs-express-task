@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import {IBookModel} from "./models";
 
 const bookSchema = new Schema({
   title: {
@@ -27,6 +28,6 @@ const bookSchema = new Schema({
   },
 });
 
-const Book = model("Book", bookSchema);
+const Book = model<IBookModel>("Book", bookSchema);
 
 export default Book;

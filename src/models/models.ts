@@ -1,5 +1,6 @@
+import { Document } from 'mongoose';
+
 export interface IBook {
-  _id?: string;
   title: string;
   description: string;
   authors: string;
@@ -9,27 +10,28 @@ export interface IBook {
   fileBook?: string;
 }
 
+export interface IBookModel extends IBook, Document {}
+
 export interface IUser {
   name: string;
   password: string;
 }
 
-
 // Задание №3
-abstract class BooksRepository {
+export abstract class BooksRepository {
   createBook(book: IBook): void {
     console.log("Книга создана");
   }
 
-  getBook(id: string): IBook{
-    return {title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}
+  getBook(id: string): Promise<IBook>{
+    return new Promise<IBook>(resolve => resolve({title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}));
   }
 
-  getBooks():IBook[] {
-    return [{title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}, {title: "Star Wars", description: "American fantastic", authors: "George Lucas"}]
+  getBooks(): Promise<IBook[]> {
+    return new Promise<IBook[]>(resolve => resolve([{title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}, {title: "Star Wars", description: "American fantastic", authors: "George Lucas"}]));
   }
 
-  updateBook(id: string): void{
+  editBook(id: string): void{
     console.log("Книга обновлена");
   }
 
