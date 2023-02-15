@@ -2,19 +2,24 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "es5",
-    "lib": ["es6", "DOM"],
+    "lib": [
+      "es6",
+      "DOM"
+    ],
     "strict": true,
     "strictNullChecks": false,
     "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": [
-      "node", "express", "reflect-metadata"
+      "node",
+      "express",
+      "reflect-metadata"
     ]
   },
   "include": [

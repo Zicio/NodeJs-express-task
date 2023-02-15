@@ -1,4 +1,6 @@
-import { Document } from 'mongoose';
+import { Types } from "mongoose";
+import Book from "./book";
+import { injectable } from "inversify";
 
 export interface IBook {
   title: string;
@@ -10,7 +12,7 @@ export interface IBook {
   fileBook?: string;
 }
 
-export interface IBookModel extends IBook, Document {}
+export type BookModel = IBook & { _id: Types.ObjectId };
 
 export interface IUser {
   name: string;
@@ -18,24 +20,46 @@ export interface IUser {
 }
 
 // Задание №3
-export abstract class BooksRepository {
-  createBook(book: IBook): void {
-    console.log("Книга создана");
+export interface IBookRepository {
+  createBook(book: IBook): Promise<void>;
+
+  getBook(id: string): Promise<BookModel>;
+
+  getBooks(): Promise<BookModel[]>;
+
+  editBook(id: string, book: IBook): Promise<void>;
+
+  deleteBook(id: string): Promise<void>;
+}
+
+@injectable()
+export class BooksRepository implements IBookRepository {
+  async createBook(book: IBook) {
+    const newBook = new Book({
+      title: book.title,
+      description: book.description,
+      authors: book.authors,
+    });
+    await newBook.save();
   }
 
-  getBook(id: string): Promise<IBook>{
-    return new Promise<IBook>(resolve => resolve({title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}));
+  async getBook(id: string) {
+    return Book.findById(id).select("-__v");
   }
 
-  getBooks(): Promise<IBook[]> {
-    return new Promise<IBook[]>(resolve => resolve([{title: "Witcher", description: "Polish fantasy", authors: "Andrzej Sapkowski"}, {title: "Star Wars", description: "American fantastic", authors: "George Lucas"}]));
+  async getBooks() {
+    return Book.find().select("-__v");
   }
 
-  editBook(id: string): void{
-    console.log("Книга обновлена");
+  async editBook(id: string, book: IBook) {
+    await Book.findByIdAndUpdate(id, {
+      title: book.title,
+      description: book.description,
+      authors: book.authors,
+    });
   }
 
-  deleteBook(id: string): void{
-    console.log("Книга удалена");
+  async deleteBook(id: string) {
+    await Book.deleteOne({ _id: id });
   }
 }

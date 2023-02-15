@@ -1,4 +1,4 @@
-import {BooksRepository, IBook} from "../../models/models";
+import { BooksRepository, IBook } from "../../models/models";
 import { Request, Response } from "express";
 import Book from "../../models/book";
 import container from "../../container";
@@ -13,9 +13,8 @@ const createBookRequest = async (req: Request, res: Response) => {
 
   try {
     // <<<  IoC homework >>>
-    // const repo = container.get(BooksRepository);
-    // await repo.createBook(newBook);
-    await newBook.save();
+    const repo = container.get(BooksRepository);
+    await repo.createBook(newBook);
     res.redirect("/book");
   } catch (e) {
     res.status(500).json({ errcode: 500, errmsg: (e as Error).message });
